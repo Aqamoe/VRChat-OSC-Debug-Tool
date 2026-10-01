@@ -1,0 +1,43 @@
+name: Build & Release
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install python-osc psutil pyinstaller
+
+      - name: Build exe (PyInstaller)
+        run: >
+          pyinstaller --onefile --noconsole --name VRC-OSC-Tester
+          --clean --hidden-import psutil osc_tester.py
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: VRC-OSC-Tester-windows-x64
+          path: dist/VRC-OSC-Tester.exe
+
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/VRC-OSC-Tester.exe
+          generate_release_notes: true
