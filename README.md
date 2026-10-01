@@ -1,6 +1,6 @@
 # VRChat-OSC-Debug-Tool
 
-[![Build & Release](https://github.com/OWNER/VRChat-OSC-Debug-Tool/actions/workflows/release.yml/badge.svg)](https://github.com/OWNER/VRChat-OSC-Debug-Tool/actions/workflows/release.yml)
+[![Build & Release](https://github.com/Aqamoe/VRChat-OSC-Debug-Tool/actions/workflows/release.yml/badge.svg)](https://github.com/Aqamoe/VRChat-OSC-Debug-Tool/actions/workflows/release.yml)
 
 一个 Windows 单文件 GUI 工具（免安装 Python），用于检测 VRChat 的 OSC 功能是否正常可用。
 
